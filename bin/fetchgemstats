@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+require 'gem_stats'
+
+puts 'Starting fetching...'
+start = Time.now
+GemStats::Fetcher.fetch_and_safe
+puts "Finished in #{(Tine.now - start).round(0)} second(s)"

@@ -15,7 +15,8 @@ class GemInfoTest < Test::Unit::TestCase
     assert_equal [], @gem.dependencies(:runtime)
   end
 
-  # def test_clients
-  #   assert_equal [], @gem.clients
-  # end
+  def test_clients
+    assert_equal [], @gem.clients.to_a
+    assert_equal [], @gem.clients(:development).to_a
+  end
 end

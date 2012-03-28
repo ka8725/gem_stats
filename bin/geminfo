@@ -1,9 +1,14 @@
 #!/usr/bin/env ruby
 require 'gem_stats'
 
-@gem_info = GemStats::GemInfo.new('rails')
+ARGV.each do |gem_name|
+  @gem_info = GemStats::GemInfo.new(gem_name)
 
-clients = @gem_info.clients
+  clients = @gem_info.clients
+  puts "Dependencies in runtime mode: #{clients.map(&:name).join(', ')}"
+  puts "Total: #{clients.count}"
 
-puts clients.join(',')
-puts "Total: #{clients.count}"
+  clients = @gem_info.clients(:development)
+  puts "Dependencies in development mode: #{clients.map(&:name).join(', ')}"
+  puts "Total: #{clients.count}"
+end

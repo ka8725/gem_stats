@@ -11,7 +11,14 @@ module GemStats
     end
 
     def self.fetch_and_safe
-      list_names.each { |name| puts name; GemInfo.new(name).save }
+      threads = []
+      list_names.each do |name|
+        threads << Thread.new(name) { |name| GemInfo.new(name).save }
+        if threads.count == 50
+          threads.each(&:join)
+          threads = []
+        end
+      end
     end
- end
+  end
 end
