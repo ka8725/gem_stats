@@ -31,22 +31,22 @@ module GemStats
 
     def save
       puts 'Saving...'
-      puts Gem.new(:name                     => @name,                        
-                   :runtime_dependencies     => dependencies,                 
-                   :development_dependencies => dependencies('development'),  
-                   :version                  => info['version']               
-                   :downloads                => info['downloads']             
-                   :version_downloads        => info['version_downloads']     
-                   :authors                  => info['authors']               
-                   :info                     => info['info']                  
-                   :project_uri              => info['project_uri']           
-                   :gem_uri                  => info['gem_uri']               
-                   :homepage_uri             => info['homepage_uri']          
-                   :wiki_uri                 => info['wiki_uri']              
-                   :documentation_uri        => info['documentation_uri']     
-                   :mailing_list_uri         => info['mailing_list_uri']      
-                   :source_code_uri          => info['source_code_uri']       
-                   :bug_tracker_uri          => info['bug_tracker_uri']).save 
+      puts Gem.new(:name                     => @name,
+                   :runtime_dependencies     => dependencies,
+                   :development_dependencies => dependencies('development'),
+                   :version                  => info['version'],
+                   :downloads                => info['downloads'],
+                   :version_downloads        => info['version_downloads'],
+                   :authors                  => info['authors'],
+                   :info                     => info['info'],
+                   :project_uri              => info['project_uri'],
+                   :gem_uri                  => info['gem_uri'],
+                   :homepage_uri             => info['homepage_uri'],
+                   :wiki_uri                 => info['wiki_uri'],
+                   :documentation_uri        => info['documentation_uri'],
+                   :mailing_list_uri         => info['mailing_list_uri'],
+                   :source_code_uri          => info['source_code_uri'],
+                   :bug_tracker_uri          => info['bug_tracker_uri']).save
     end
   end
 end
