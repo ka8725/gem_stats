@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+require 'gem_stats'
+
+@gem_info = GemStats::GemInfo.new('rails')
+
+clients = @gem_info.clients
+
+puts clients.join(',')
+puts "Total: #{clients.count}"
