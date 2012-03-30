@@ -7,5 +7,4 @@ require "gem_stats/connection"
 module GemStats
 end
 
-GemStats::Connection.connect
-
+GemStats::Connection.connect unless defined?(Rails)
