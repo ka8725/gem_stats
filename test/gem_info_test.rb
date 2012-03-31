@@ -2,6 +2,7 @@ require 'test_helper'
 
 class GemInfoTest < Test::Unit::TestCase
   def setup
+    GemStats::Connection.connect
     @gem = GemStats::GemInfo.new('get_or_build')
   end
 

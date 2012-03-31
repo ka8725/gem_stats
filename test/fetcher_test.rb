@@ -14,4 +14,10 @@ class FetcherTest < Test::Unit::TestCase
   def test_fetch_and_save
     assert_equal true, Fetcher.respond_to?(:fetch_and_safe)
   end
+
+  def test_bulk_number
+    assert_equal 50, Fetcher.bulk_number
+    Fetcher.bulk_number = 100
+    assert_equal 100, Fetcher.bulk_number
+  end
 end

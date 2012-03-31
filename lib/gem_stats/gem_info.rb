@@ -26,7 +26,6 @@ module GemStats
     end
 
     def save
-      log @name
       gem = Gem.find_by_name(@name) || Gem.new
       gem.attributes = {:name                     => @name,
                         :runtime_dependencies     => dependencies,
@@ -45,10 +44,6 @@ module GemStats
                         :source_code_uri          => info['source_code_uri'],
                         :bug_tracker_uri          => info['bug_tracker_uri']}
       gem.save
-    end
-
-    def log(message)
-      puts message
     end
   end
 end

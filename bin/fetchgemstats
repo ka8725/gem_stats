@@ -1,7 +1,21 @@
 #!/usr/bin/env ruby
 require 'gem_stats'
+require 'optparse'
 
-puts 'Starting fetching...'
 start = Time.now
+
+options = {:config => {'development' => {}, 'production' => {}}, :env => 'development'}
+
+OptionParser.new do |opts|
+  opts.banner = 'Usage: fetchgemstats [options]'
+  opts.on('-e', '--env [environment]', 'Default is development environment') { |opt| options[:env] = 'production' }
+  opts.on('-u', '--uri [mongo db URI]',
+    'Pattern: mongodb://[username:password@]host1[:port1][,host2[:port2],...[,hostN[:portN]]][/[database][?options]]') { |opt| options[:config][options[:env]]['uri'] = opt }
+  opts.on_tail("-h", "--help", "Show this message") do
+    puts opts
+    exit
+  end
+end.parse!
+
+GemStats::Connection.connect(options[:config][options[:env]].empty? ? {} : options)
 GemStats::Fetcher.fetch_and_safe
-puts "Finished in #{(Tine.now - start).round(0)} second(s)"
