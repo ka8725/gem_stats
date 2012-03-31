@@ -26,6 +26,8 @@ module GemStats
           pbar.inc(bulk_number)
         end
       end
+      threads.each(&:join)
+      pbar.inc(bulk_number)
       pbar.finish
     end
   end
