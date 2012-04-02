@@ -5,8 +5,7 @@ module GemStats
     include MongoMapper::Document
 
     key :name, String
-    key :runtime_dependencies, Array
-    key :development_dependencies, Array
+    key :dependencies, Hash
     key :version, String
     key :downloads, Integer
     key :version_downloads, String
@@ -20,5 +19,11 @@ module GemStats
     key :mailing_list_uri, String
     key :source_code_uri, String
     key :bug_tracker_uri, String
+
+    %w(runtime development).each do |env|
+      define_method "#{env}_dependencies" do
+        dependencies[env]
+      end
+    end
   end
 end
