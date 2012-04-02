@@ -22,7 +22,7 @@ module GemStats
     end
 
     def clients(env = 'runtime')
-      Gem.where("#{env}_dependencies" => @name).all
+      Gem.where("dependencies.#{env}.name" => @name).all
     end
 
     def save
