@@ -18,7 +18,7 @@ module GemStats
 
     def dependencies(env = 'runtime')
       @dependencies ||= {}
-      @dependencies[env.to_s] ||= info['dependencies'][env.to_s].inject([]) { |sum, gem| sum << gem['name'] }
+      @dependencies[env.to_s] ||= info['dependencies'][env.to_s].inject([]) { |list, gem| list << gem['name'] }
     end
 
     def clients(env = 'runtime')
