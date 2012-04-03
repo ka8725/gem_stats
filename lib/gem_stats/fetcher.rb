@@ -11,7 +11,7 @@ module GemStats
     end
 
     def self.list_names
-      @list_name ||= list.map(&:first)
+      @list_name ||= list.map(&:first).uniq.compact
     end
 
     def self.fetch_and_safe
