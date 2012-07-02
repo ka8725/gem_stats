@@ -7,10 +7,6 @@ class FetcherTest < Test::Unit::TestCase
     assert_not_nil Fetcher.list
   end
 
-  def test_size_of_fetcher_list
-    assert_equal Fetcher.list.count, Fetcher.list_names.count
-  end
-
   def test_fetch_and_save
     assert_equal true, Fetcher.respond_to?(:fetch_and_safe)
   end
