@@ -13,7 +13,12 @@ module GemStats
     end
 
     def info
-      @info ||= JSON.load open("#{API_URL}#{@name}.#{REQUEST_FORMAT}").read
+      return @info if defined?(@info)
+      begin
+        @info ||= JSON.load open("#{API_URL}#{@name}.#{REQUEST_FORMAT}").read
+      rescue OpenURI::HTTPError => e
+        @info = nil
+      end
     end
 
     def dependencies(env = 'runtime')
@@ -27,8 +32,12 @@ module GemStats
 
     def save
       gem = Gem.find_by_name(@name) || Gem.new
-      gem.attributes = info
-      gem.save
+      if info
+        gem.attributes = info
+        gem.save
+      else
+        false
+      end
     end
   end
 end
